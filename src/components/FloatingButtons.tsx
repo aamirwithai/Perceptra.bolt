@@ -9,7 +9,7 @@ export default function FloatingButtons() {
   const [chatInput, setChatInput] = useState('');
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/917977036723?text=Hi, I would like to know more about your services', '_blank');
+    window.open('https://wa.me/919876543210?text=Hi, I would like to know more about your services', '_blank');
   };
 
   const handleSendMessage = () => {

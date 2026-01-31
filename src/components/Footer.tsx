@@ -53,7 +53,7 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-red-500 flex-shrink-0" />
                 <a href="tel:+919876543210" className="text-gray-400 hover:text-white transition-colors">
-                  +91 79770 36723
+                  +91 98765 43210
                 </a>
               </div>
             </div>
@@ -78,15 +78,15 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2026 Perceptra. All rights reserved.
+              © 2024 Perceptra. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link to="/terms-and-conditions" className="text-gray-400 hover:text-white transition-colors text-sm">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                 Privacy Policy
-              </Link>
-              <Link to="/terms-and-conditions" className="text-gray-400 hover:text-white transition-colors text-sm">
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                 Terms of Service
-              </Link>
+              </a>
             </div>
           </div>
         </div>
