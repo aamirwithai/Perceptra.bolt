@@ -81,12 +81,12 @@ export default function Footer() {
               © 2024 Perceptra. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+              <Link to="/terms-and-conditions" className="text-gray-400 hover:text-white transition-colors text-sm">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+              </Link>
+              <Link to="/terms-and-conditions" className="text-gray-400 hover:text-white transition-colors text-sm">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>
