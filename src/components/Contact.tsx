@@ -1,24 +1,21 @@
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
+import { MessageCircle } from 'lucide-react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phone: '',
-    businessType: '',
     interestedService: '',
     message: ''
   });
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    const whatsappMessage = `*New Strategy Session Request*
+  const handleWhatsAppClick = () => {
+    const whatsappMessage = `*New Contact Request*
 
 *Name:* ${formData.fullName}
 *Email:* ${formData.email}
 *Phone:* ${formData.phone}
-*Business Type:* ${formData.businessType}
 *Interested Service:* ${formData.interestedService}
 
 *Message:*
@@ -28,15 +25,6 @@ ${formData.message}`;
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=917977036723&text=${encodedMessage}&type=phone_number&app_absent=0`;
 
     window.open(whatsappUrl, '_blank');
-
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      businessType: '',
-      interestedService: '',
-      message: ''
-    });
   };
 
   return (
@@ -49,7 +37,7 @@ ${formData.message}`;
           </div>
 
           <div className="max-w-3xl mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="fullName" className="block text-gray-300 mb-2 font-medium">
@@ -82,36 +70,19 @@ ${formData.message}`;
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="phone" className="block text-gray-300 mb-2 font-medium">
-                    Phone *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors"
-                    placeholder="+91 98765 43210"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="businessType" className="block text-gray-300 mb-2 font-medium">
-                    Business Type *
-                  </label>
-                  <input
-                    type="text"
-                    id="businessType"
-                    required
-                    value={formData.businessType}
-                    onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-                    className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors"
-                    placeholder="E.g., Healthcare, Legal"
-                  />
-                </div>
+              <div>
+                <label htmlFor="phone" className="block text-gray-300 mb-2 font-medium">
+                  Phone *
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors"
+                  placeholder="+91 98765 43210"
+                />
               </div>
 
               <div>
@@ -154,12 +125,14 @@ ${formData.message}`;
               </div>
 
               <button
-                type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition-all font-medium text-lg"
+                type="button"
+                onClick={handleWhatsAppClick}
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg transition-all font-medium text-lg flex items-center justify-center gap-3"
               >
-                Request Strategy Session
+                <MessageCircle size={24} />
+                Chat on WhatsApp
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </section>
