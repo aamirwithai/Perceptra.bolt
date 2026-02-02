@@ -68,7 +68,7 @@ export default function LocalSeoVsNationalAuthority() {
               to="/contact"
               className="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition-all font-medium text-lg"
             >
-              Request Strategy Session
+              Request Strategy
             </Link>
           </div>
         </article>
