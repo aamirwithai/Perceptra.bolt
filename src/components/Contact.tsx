@@ -25,7 +25,7 @@ export default function ContactPage() {
 ${formData.message}`;
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappUrl = `https://api.whatsapp.com/send/?phone=9179770367230&text=${encodedMessage}&type=phone_number&app_absent=0`;
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=917977036723&text=${encodedMessage}&type=phone_number&app_absent=0`;
 
     window.open(whatsappUrl, '_blank');
 
