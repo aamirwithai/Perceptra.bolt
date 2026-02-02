@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from 'react';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, AlertCircle } from 'lucide-react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -11,7 +11,91 @@ export default function ContactPage() {
     message: ''
   });
 
+  const [errors, setErrors] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    interestedService: '',
+    message: ''
+  });
+
+  const [touched, setTouched] = useState({
+    fullName: false,
+    email: false,
+    phone: false,
+    interestedService: false,
+    message: false
+  });
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string) => {
+    const phoneRegex = /^[0-9+\s-]{10,}$/;
+    return phoneRegex.test(phone);
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      fullName: '',
+      email: '',
+      phone: '',
+      interestedService: '',
+      message: ''
+    };
+
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = 'Full name is required';
+    } else if (formData.fullName.trim().length < 2) {
+      newErrors.fullName = 'Name must be at least 2 characters';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!validatePhone(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    if (!formData.interestedService) {
+      newErrors.interestedService = 'Please select a service';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(error => error !== '');
+  };
+
+  const handleBlur = (field: keyof typeof formData) => {
+    setTouched({ ...touched, [field]: true });
+    validateForm();
+  };
+
   const handleWhatsAppClick = () => {
+    setTouched({
+      fullName: true,
+      email: true,
+      phone: true,
+      interestedService: true,
+      message: true
+    });
+
+    if (!validateForm()) {
+      return;
+    }
+
     const whatsappMessage = `*New Contact Request*
 
 *Name:* ${formData.fullName}
@@ -84,9 +168,20 @@ ${formData.message}`;
                       required
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors"
+                      onBlur={() => handleBlur('fullName')}
+                      className={`w-full bg-black border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors ${
+                        touched.fullName && errors.fullName
+                          ? 'border-red-500 focus:border-red-600'
+                          : 'border-white/10 focus:border-red-500'
+                      }`}
                       placeholder="John Doe"
                     />
+                    {touched.fullName && errors.fullName && (
+                      <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                        <AlertCircle size={14} />
+                        <span>{errors.fullName}</span>
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -99,9 +194,20 @@ ${formData.message}`;
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors"
+                      onBlur={() => handleBlur('email')}
+                      className={`w-full bg-black border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors ${
+                        touched.email && errors.email
+                          ? 'border-red-500 focus:border-red-600'
+                          : 'border-white/10 focus:border-red-500'
+                      }`}
                       placeholder="john@company.com"
                     />
+                    {touched.email && errors.email && (
+                      <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                        <AlertCircle size={14} />
+                        <span>{errors.email}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -115,9 +221,20 @@ ${formData.message}`;
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors"
+                    onBlur={() => handleBlur('phone')}
+                    className={`w-full bg-black border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors ${
+                      touched.phone && errors.phone
+                        ? 'border-red-500 focus:border-red-600'
+                        : 'border-white/10 focus:border-red-500'
+                    }`}
                     placeholder="+91 98765 43210"
                   />
+                  {touched.phone && errors.phone && (
+                    <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                      <AlertCircle size={14} />
+                      <span>{errors.phone}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -129,7 +246,12 @@ ${formData.message}`;
                     required
                     value={formData.interestedService}
                     onChange={(e) => setFormData({ ...formData, interestedService: e.target.value })}
-                    className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors"
+                    onBlur={() => handleBlur('interestedService')}
+                    className={`w-full bg-black border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors ${
+                      touched.interestedService && errors.interestedService
+                        ? 'border-red-500 focus:border-red-600'
+                        : 'border-white/10 focus:border-red-500'
+                    }`}
                   >
                     <option value="">Select a service</option>
                     <option value="authority-websites">Authority Websites</option>
@@ -142,6 +264,12 @@ ${formData.message}`;
                     <option value="ecommerce">E-commerce Solutions</option>
                     <option value="maintenance">Maintenance & Growth Retainers</option>
                   </select>
+                  {touched.interestedService && errors.interestedService && (
+                    <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                      <AlertCircle size={14} />
+                      <span>{errors.interestedService}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -153,10 +281,21 @@ ${formData.message}`;
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onBlur={() => handleBlur('message')}
                     rows={6}
-                    className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors resize-none"
+                    className={`w-full bg-black border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors resize-none ${
+                      touched.message && errors.message
+                        ? 'border-red-500 focus:border-red-600'
+                        : 'border-white/10 focus:border-red-500'
+                    }`}
                     placeholder="Tell us about your project and goals..."
                   />
+                  {touched.message && errors.message && (
+                    <div className="flex items-center gap-1 mt-1 text-red-500 text-sm">
+                      <AlertCircle size={14} />
+                      <span>{errors.message}</span>
+                    </div>
+                  )}
                 </div>
 
                 <button
