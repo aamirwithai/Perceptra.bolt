@@ -135,7 +135,7 @@ ${formData.message}`;
               <button
                 type="button"
                 onClick={handleWhatsAppClick}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg transition-all font-medium text-lg flex items-center justify-center gap-3"
+                className="w-full bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition-all font-medium text-lg flex items-center justify-center gap-3"
               >
                 <MessageCircle size={24} />
                 Chat on WhatsApp
