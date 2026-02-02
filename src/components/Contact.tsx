@@ -13,21 +13,34 @@ export default function Contact() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
+    const name = formData.fullName.trim();
+    const email = formData.email.trim();
+    const phone = formData.phone.trim();
+    const business = formData.businessType.trim();
+    const service = formData.interestedService;
+    const message = formData.message.trim();
+
+    if (!name || !email || !phone || !business || !service || !message) {
+      alert('Please fill in all fields');
+      return;
+    }
+
     const phoneNumber = "917977036723";
 
     const whatsappMessage =
       `*New Lead from Website*%0A%0A` +
-      `*Name:* ${encodeURIComponent(formData.fullName)}%0A` +
-      `*Email:* ${encodeURIComponent(formData.email)}%0A` +
-      `*Phone:* ${encodeURIComponent(formData.phone)}%0A` +
-      `*Business Type:* ${encodeURIComponent(formData.businessType)}%0A` +
-      `*Interested Service:* ${encodeURIComponent(formData.interestedService)}%0A` +
-      `*Message:* ${encodeURIComponent(formData.message)}`;
+      `*Name:* ${encodeURIComponent(name)}%0A` +
+      `*Email:* ${encodeURIComponent(email)}%0A` +
+      `*Phone:* ${encodeURIComponent(phone)}%0A` +
+      `*Business Type:* ${encodeURIComponent(business)}%0A` +
+      `*Interested Service:* ${encodeURIComponent(service)}%0A` +
+      `*Message:* ${encodeURIComponent(message)}`;
 
-    window.open(
-      `https://wa.me/${phoneNumber}?text=${whatsappMessage}`,
-      "_blank"
-    );
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+    console.log('WhatsApp URL:', whatsappURL);
+
+    window.location.href = whatsappURL;
   };
 
   return (
