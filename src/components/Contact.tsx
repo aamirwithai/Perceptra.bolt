@@ -1,10 +1,4 @@
 import { useState, FormEvent } from 'react';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,43 +9,34 @@ export default function ContactPage() {
     interestedService: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
 
-    try {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([{
-          full_name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          business_type: formData.businessType,
-          interested_service: formData.interestedService,
-          message: formData.message
-        }]);
+    const whatsappMessage = `*New Strategy Session Request*
 
-      if (error) throw error;
+*Name:* ${formData.fullName}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone}
+*Business Type:* ${formData.businessType}
+*Interested Service:* ${formData.interestedService}
 
-      setSubmitStatus('success');
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        businessType: '',
-        interestedService: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+*Message:*
+${formData.message}`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=9179770367230&text=${encodedMessage}&type=phone_number&app_absent=0`;
+
+    window.open(whatsappUrl, '_blank');
+
+    setFormData({
+      fullName: '',
+      email: '',
+      phone: '',
+      businessType: '',
+      interestedService: '',
+      message: ''
+    });
   };
 
   return (
@@ -168,24 +153,11 @@ export default function ContactPage() {
                 />
               </div>
 
-              {submitStatus === 'success' && (
-                <div className="bg-green-900/20 border border-green-500/50 rounded-lg p-4 text-green-400">
-                  Thank you for your interest! We'll get back to you within 24 hours.
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-4 text-red-400">
-                  There was an error submitting your form. Please try again or contact us directly.
-                </div>
-              )}
-
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-red-600 hover:bg-red-700 disabled:bg-red-800 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg transition-all font-medium text-lg"
+                className="w-full bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition-all font-medium text-lg"
               >
-                {isSubmitting ? 'Submitting...' : 'Request Strategy Session'}
+                Request Strategy Session
               </button>
             </form>
           </div>
