@@ -162,7 +162,7 @@ export default function About() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Premium Standards</h3>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  Every project reflects the authority you want to project—no shortcuts.
+                  Every project reflects the authority you want to project no shortcuts.
                 </p>
               </div>
             </div>
