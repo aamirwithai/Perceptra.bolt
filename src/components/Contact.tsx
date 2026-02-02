@@ -1,10 +1,4 @@
 import { useState, FormEvent } from 'react';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,43 +9,25 @@ export default function Contact() {
     interestedService: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
 
-    try {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([{
-          full_name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          business_type: formData.businessType,
-          interested_service: formData.interestedService,
-          message: formData.message
-        }]);
+    const phoneNumber = "917977036723";
 
-      if (error) throw error;
+    const whatsappMessage =
+      `*New Lead from Website*%0A%0A` +
+      `*Name:* ${encodeURIComponent(formData.fullName)}%0A` +
+      `*Email:* ${encodeURIComponent(formData.email)}%0A` +
+      `*Phone:* ${encodeURIComponent(formData.phone)}%0A` +
+      `*Business Type:* ${encodeURIComponent(formData.businessType)}%0A` +
+      `*Interested Service:* ${encodeURIComponent(formData.interestedService)}%0A` +
+      `*Message:* ${encodeURIComponent(formData.message)}`;
 
-      setSubmitStatus('success');
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        businessType: '',
-        interestedService: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    window.open(
+      `https://wa.me/${phoneNumber}?text=${whatsappMessage}`,
+      "_blank"
+    );
   };
 
   return (
@@ -167,24 +143,11 @@ export default function Contact() {
               />
             </div>
 
-            {submitStatus === 'success' && (
-              <div className="bg-green-900/20 border border-green-500/50 rounded-lg p-4 text-green-400">
-                Thank you for your interest! We'll get back to you within 24 hours.
-              </div>
-            )}
-
-            {submitStatus === 'error' && (
-              <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-4 text-red-400">
-                There was an error submitting your form. Please try again or contact us directly.
-              </div>
-            )}
-
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-red-600 hover:bg-red-700 disabled:bg-red-800 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg transition-all font-medium text-lg"
+              className="w-full bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition-all font-medium text-lg"
             >
-              {isSubmitting ? 'Submitting...' : 'Request Strategy Session'}
+              Request Strategy Session
             </button>
           </form>
         </div>
