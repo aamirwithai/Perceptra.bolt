@@ -9,6 +9,7 @@ import OurWork from './pages/OurWork';
 import Insights from './pages/Insights';
 import ContactPage from './pages/ContactPage';
 import TermsAndConditions from './pages/TermsAndConditions';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/insights" element={<Insights />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
         <FloatingButtons />
