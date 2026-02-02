@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -186,62 +187,77 @@ export default function TermsAndConditions() {
   };
 
   return (
-    <section className="py-24 bg-black min-h-screen">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
-          <h1 className="text-5xl font-bold text-white mb-6">Terms & Conditions</h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-4">
-            By accessing our website, engaging with our services, or communicating with us in any form, you agree to comply with and be bound by the following Terms & Conditions.
-          </p>
-          <p className="text-gray-500">Effective Date: [Insert Date]</p>
-        </div>
+    <>
+      <Helmet>
+        <title>Terms & Conditions | Perceptra</title>
 
-        <div className="max-w-4xl mx-auto mb-12">
-          <p className="text-gray-300 leading-relaxed">
-            Welcome to <span className="text-white font-semibold">PERCEPTRA</span>. These terms are designed to ensure transparency, professionalism, and mutual alignment in every engagement. If you do not agree with these terms, please refrain from using our website or services.
-          </p>
-        </div>
+        {/* Legal pages should NOT be indexed */}
+        <meta name="robots" content="noindex, follow" />
 
-        <div className="max-w-4xl mx-auto">
-          <div className="relative pl-8 md:pl-16">
-            <div className="absolute left-2 md:left-6 top-0 bottom-0 w-0.5 bg-red-600/30" />
+        <meta
+          name="description"
+          content="Read Perceptra’s Terms & Conditions governing the use of our website and digital authority services."
+        />
+      </Helmet>
 
-            <div className="space-y-8">
-              {sections.map((section, index) => (
-                <div key={index} className="relative">
-                  <div className="absolute left-[-2rem] md:left-[-2.5rem] top-0 w-4 h-4 bg-red-600 rounded-full ring-4 ring-black" />
+      {/* EXISTING UI — UNCHANGED */}
+      <section className="py-24 bg-black min-h-screen">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-20">
+            <h1 className="text-5xl font-bold text-white mb-6">Terms & Conditions</h1>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-4">
+              By accessing our website, engaging with our services, or communicating with us in any form, you agree to comply with and be bound by the following Terms & Conditions.
+            </p>
+            <p className="text-gray-500">Effective Date: [Insert Date]</p>
+          </div>
 
-                  <div className="transition-all duration-300">
-                    <button
-                      onClick={() => toggleSection(index)}
-                      className="w-full text-left group"
-                    >
-                      <div className="flex items-center justify-between hover:translate-x-2 transition-transform duration-300">
-                        <h3 className="text-2xl font-bold text-white group-hover:text-red-500 transition-colors">
-                          {section.title}
-                        </h3>
-                        <div className="text-red-600 group-hover:text-red-500 transition-colors">
-                          {openSections.includes(index) ? (
-                            <ChevronUp size={24} />
-                          ) : (
-                            <ChevronDown size={24} />
-                          )}
+          <div className="max-w-4xl mx-auto mb-12">
+            <p className="text-gray-300 leading-relaxed">
+              Welcome to <span className="text-white font-semibold">PERCEPTRA</span>. These terms are designed to ensure transparency, professionalism, and mutual alignment in every engagement. If you do not agree with these terms, please refrain from using our website or services.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="relative pl-8 md:pl-16">
+              <div className="absolute left-2 md:left-6 top-0 bottom-0 w-0.5 bg-red-600/30" />
+
+              <div className="space-y-8">
+                {sections.map((section, index) => (
+                  <div key={index} className="relative">
+                    <div className="absolute left-[-2rem] md:left-[-2.5rem] top-0 w-4 h-4 bg-red-600 rounded-full ring-4 ring-black" />
+
+                    <div className="transition-all duration-300">
+                      <button
+                        onClick={() => toggleSection(index)}
+                        className="w-full text-left group"
+                      >
+                        <div className="flex items-center justify-between hover:translate-x-2 transition-transform duration-300">
+                          <h3 className="text-2xl font-bold text-white group-hover:text-red-500 transition-colors">
+                            {section.title}
+                          </h3>
+                          <div className="text-red-600 group-hover:text-red-500 transition-colors">
+                            {openSections.includes(index) ? (
+                              <ChevronUp size={24} />
+                            ) : (
+                              <ChevronDown size={24} />
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </button>
+                      </button>
 
-                    {openSections.includes(index) && (
-                      <div className="mt-4 text-lg text-blue-300/80 leading-relaxed animate-fadeIn">
-                        {section.content}
-                      </div>
-                    )}
+                      {openSections.includes(index) && (
+                        <div className="mt-4 text-lg text-blue-300/80 leading-relaxed animate-fadeIn">
+                          {section.content}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
