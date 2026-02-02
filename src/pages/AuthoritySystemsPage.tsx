@@ -1,4 +1,15 @@
-import { Globe, Target, Search, TrendingUp, Users, Shield, FileText, ShoppingCart, RefreshCw } from 'lucide-react';
+import { Helmet } from "react-helmet-async";
+import {
+  Globe,
+  Target,
+  Search,
+  TrendingUp,
+  Users,
+  Shield,
+  FileText,
+  ShoppingCart,
+  RefreshCw
+} from 'lucide-react';
 
 const systems = [
   {
@@ -59,39 +70,74 @@ const systems = [
 
 export default function AuthoritySystemsPage() {
   return (
-    <div className="pt-24">
-      <section className="py-24 bg-black">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-white mb-4">Authority Systems</h2>
-            <p className="text-xl text-gray-400">Comprehensive solutions for digital dominance</p>
-          </div>
+    <>
+      <Helmet>
+        <title>Authority Systems | Digital Growth Frameworks by Perceptra</title>
+        <meta
+          name="description"
+          content="Explore Perceptra’s authority systems—structured digital frameworks for websites, SEO, conversion, reputation, and scalable business growth."
+        />
+        <link
+          rel="canonical"
+          href="https://www.perceptra.in/authority-systems"
+        />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {systems.map((system, index) => {
-              const Icon = system.icon;
-              return (
-                <div
-                  key={index}
-                  className="group relative bg-gradient-to-br from-[#0f1729] to-[#0a0f1c] border border-white/5 rounded-xl p-8 hover:border-red-500/50 hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden"
-                >
-                  <div className="absolute top-4 right-4 text-[90px] font-bold text-white/5 leading-none pointer-events-none">
-                    {system.number}
-                  </div>
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="Authority Systems | Digital Growth Frameworks by Perceptra"
+        />
+        <meta
+          property="og:description"
+          content="Structured authority systems designed to establish credibility, drive visibility, and scale digital growth."
+        />
+        <meta
+          property="og:url"
+          content="https://www.perceptra.in/authority-systems"
+        />
+      </Helmet>
 
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 bg-red-600/10 rounded-lg flex items-center justify-center mb-6">
-                      <Icon className="w-7 h-7 text-red-500" />
+      {/* EXISTING UI — UNCHANGED */}
+      <div className="pt-24">
+        <section className="py-24 bg-black">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-5xl font-bold text-white mb-4">Authority Systems</h2>
+              <p className="text-xl text-gray-400">
+                Comprehensive solutions for digital dominance
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+              {systems.map((system, index) => {
+                const Icon = system.icon;
+                return (
+                  <div
+                    key={index}
+                    className="group relative bg-gradient-to-br from-[#0f1729] to-[#0a0f1c] border border-white/5 rounded-xl p-8 hover:border-red-500/50 hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden"
+                  >
+                    <div className="absolute top-4 right-4 text-[90px] font-bold text-white/5 leading-none pointer-events-none">
+                      {system.number}
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-4 leading-tight">{system.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{system.description}</p>
+
+                    <div className="relative z-10">
+                      <div className="w-14 h-14 bg-red-600/10 rounded-lg flex items-center justify-center mb-6">
+                        <Icon className="w-7 h-7 text-red-500" />
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-4 leading-tight">
+                        {system.title}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {system.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 }
