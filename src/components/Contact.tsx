@@ -11,14 +11,37 @@ export default function Contact() {
   });
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+const handleSubmit = (e: FormEvent) => {
+  e.preventDefault();
 
-    const name = formData.fullName.trim();
-    const email = formData.email.trim();
-    const phone = formData.phone.trim();
-    const business = formData.businessType.trim();
-    const service = formData.interestedService;
-    const message = formData.message.trim();
+  const name = formData.fullName.trim();
+  const email = formData.email.trim();
+  const phone = formData.phone.trim();
+  const business = formData.businessType.trim();
+  const service = formData.interestedService;
+  const message = formData.message.trim();
+
+  if (!name || !email || !phone || !business || !service || !message) {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  const phoneNumber = "917977036723";
+
+  const whatsappMessage =
+    `*New Lead from Website*%0A%0A` +
+    `*Name:* ${encodeURIComponent(name)}%0A` +
+    `*Email:* ${encodeURIComponent(email)}%0A` +
+    `*Phone:* ${encodeURIComponent(phone)}%0A` +
+    `*Business Type:* ${encodeURIComponent(business)}%0A` +
+    `*Interested Service:* ${encodeURIComponent(service)}%0A` +
+    `*Message:* ${encodeURIComponent(message)}`;
+
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+  window.open(whatsappURL, "_blank");
+};
+
 
     if (!name || !email || !phone || !business || !service || !message) {
       alert('Please fill in all fields');
