@@ -4,23 +4,23 @@ import { Target, Award, TrendingUp, Users } from 'lucide-react';
 const stages = [
   {
     title: 'Foundation',
-    description: 'Started with a vision to help service businesses build authentic digital authority, not just online presence.'
+    description: 'Started with a vision to become the best website development company in Mumbai by helping service businesses build authentic digital authority—not just online presence.'
   },
   {
     title: 'Evolution',
-    description: 'Refined our approach through diverse industry projects, developing proprietary systems for sustainable growth.'
+    description: 'Refined our approach through diverse industry projects across Mumbai, Navi Mumbai, and Thane—developing proprietary systems for sustainable digital growth.'
   },
   {
     title: 'Refinement',
-    description: 'Focused exclusively on authority-first strategies, eliminating tactics that prioritize vanity over value.'
+    description: 'Focused exclusively on authority-first strategies, eliminating tactics that prioritize vanity over value while delivering scalable website and SEO systems.'
   },
   {
     title: 'Today',
-    description: 'Trusted partner for ambitious service businesses seeking systematic, scalable digital authority systems.'
+    description: 'Recognized as a trusted website development company in Navi Mumbai and a reliable freelance website developer in Mumbai for businesses seeking structured growth.'
   },
   {
     title: 'Vision Ahead',
-    description: 'Expanding our impact by empowering more businesses to build lasting digital authority and market leadership.'
+    description: 'Expanding our impact across Mumbai and Thane by delivering premium website development, transparent website designers in Mumbai charges, and performance-driven digital systems.'
   }
 ];
 
@@ -28,20 +28,27 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About Perceptra | Crafting Digital Authority</title>
+        <title>Best Website Development Company in Mumbai | Perceptra</title>
+
         <meta
           name="description"
-          content="Learn about Perceptra’s journey, mission, and authority-first approach to building scalable, high-performance digital brands."
+          content="Perceptra is a leading website development company in Mumbai and Navi Mumbai, offering SEO-driven websites, transparent website designers in Mumbai charges, and scalable digital systems for modern businesses."
         />
-        <link rel="canonical" href="https://www.perceptra.in/about" />
 
-        {/* Optional Open Graph for social sharing */}
-        <meta property="og:title" content="About Perceptra | Crafting Digital Authority" />
+        <meta
+          name="keywords"
+          content="Best website development company in Mumbai, Freelance website developer in Mumbai, Website development company in Navi Mumbai, Website designers in Mumbai charges, Website developer in Thane"
+        />
+
+        <link rel="canonical" href="https://perceptra.in/about" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Best Website Development Company in Mumbai | Perceptra" />
         <meta
           property="og:description"
-          content="Discover how Perceptra helps service businesses build lasting digital authority through structured systems and premium execution."
+          content="Discover how Perceptra builds scalable, SEO-optimized websites and digital authority systems for businesses across Mumbai, Navi Mumbai, and Thane."
         />
-        <meta property="og:url" content="https://www.perceptra.in/about" />
+        <meta property="og:url" content="https://perceptra.in/about" />
       </Helmet>
 
       {/* EXISTING UI — UNCHANGED */}
@@ -51,7 +58,7 @@ export default function About() {
             <div className="text-center mb-20">
               <h2 className="text-5xl font-bold text-white mb-6">Our Journey</h2>
               <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                From vision to execution, our evolution reflects our commitment to building digital authority that lasts.
+                From being a freelance website developer in Mumbai to becoming a trusted website development company in Navi Mumbai and Thane, our evolution reflects our commitment to building digital authority that lasts.
               </p>
             </div>
 
@@ -81,7 +88,7 @@ export default function About() {
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold text-white mb-6">About PERCEPTRA</h2>
               <p className="text-xl text-gray-400 max-w-4xl mx-auto">
-                We're on a mission to help service-based businesses build lasting digital authority through structured systems, strategic thinking, and premium execution.
+                Perceptra is positioned as the best website development company in Mumbai for service-based businesses seeking structured digital authority. We combine SEO expertise, premium web design, and scalable systems to help brands grow sustainably across Mumbai, Navi Mumbai, and Thane.
               </p>
             </div>
 
@@ -92,7 +99,7 @@ export default function About() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Our Mission</h3>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  To empower service-based businesses with the digital authority systems they need to build trust, attract ideal clients, and achieve sustainable growth in competitive markets.
+                  To deliver performance-driven websites and digital growth systems with transparent website designers in Mumbai charges, helping businesses dominate competitive markets.
                 </p>
               </div>
 
@@ -102,7 +109,7 @@ export default function About() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Our Approach</h3>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  We don't chase trends or offer one-size-fits-all solutions. We build custom authority systems tailored to your business, market, and growth goals—designed to compound value over time.
+                  As a leading website developer in Thane and Mumbai, we build custom authority systems tailored to your business goals—focusing on long-term scalability and measurable growth.
                 </p>
               </div>
 
@@ -112,7 +119,7 @@ export default function About() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Authority-Led Growth</h3>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  We design digital ecosystems that position your brand as the trusted authority in your industry, enabling long-term visibility, credibility, and compounding business growth across channels.
+                  We design SEO-optimized digital ecosystems that position your brand as a trusted authority, ensuring long-term visibility and compounding growth.
                 </p>
               </div>
 
@@ -122,7 +129,7 @@ export default function About() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Scalable Digital Foundations</h3>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  Our systems are engineered to scale—supporting business expansion, increasing demand, and evolving market needs without sacrificing performance, consistency, or brand authority.
+                  Our systems support expansion across Mumbai, Navi Mumbai, and beyond—without compromising performance or authority positioning.
                 </p>
               </div>
             </div>
@@ -142,7 +149,7 @@ export default function About() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Long-Term Partnerships</h3>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  We invest in relationships, not transactions. Your success is our success.
+                  We build lasting relationships by delivering measurable SEO and website development results.
                 </p>
               </div>
 
@@ -152,7 +159,7 @@ export default function About() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Systems-First Thinking</h3>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  We build infrastructure that scales with your business and compounds over time.
+                  Every website is engineered with structured growth systems that scale over time.
                 </p>
               </div>
 
@@ -162,7 +169,7 @@ export default function About() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Premium Standards</h3>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  Every project reflects the authority you want to project no shortcuts.
+                  As a premium website development company in Mumbai, we maintain uncompromising quality in execution.
                 </p>
               </div>
             </div>
